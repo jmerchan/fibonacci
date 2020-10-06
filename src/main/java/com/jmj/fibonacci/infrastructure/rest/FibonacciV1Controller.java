@@ -25,7 +25,7 @@ public class FibonacciV1Controller {
 
     @GetMapping("/calculate/{value}")
     public ResultV1DTO calculate(
-            @PathVariable(value = "value") Long number
+            @PathVariable(value = "value") int number
     ) {
         return longToResultV1DTOMapper.map(
                 calculateFibonacci.execute(new NumberToCalculate(number))

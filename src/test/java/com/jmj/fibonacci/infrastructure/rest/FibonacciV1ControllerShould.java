@@ -30,13 +30,13 @@ class FibonacciV1ControllerShould {
 
     @Test
     void calculate() {
-        NumberToCalculate numberToCalculate = new NumberToCalculate(10L);
+        NumberToCalculate numberToCalculate = new NumberToCalculate(10);
         ResultV1DTO expectedResult = new ResultV1DTO(55L);
 
         given(calculateFibonacci.execute(numberToCalculate)).willReturn(55L);
         given(longToResultV1DTOMapper.map(55L)).willReturn(new ResultV1DTO(55L));
 
-        ResultV1DTO calculate = fibonacciV1Controller.calculate(10L);
+        ResultV1DTO calculate = fibonacciV1Controller.calculate(10);
 
         assertThat(calculate)
                 .isEqualTo(expectedResult);

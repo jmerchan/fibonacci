@@ -21,20 +21,18 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 @ActiveProfiles("test")
 class GetFibonacciCalculateNumberIT {
-    private static final String EXPECTED_USER_JSON = "{\"result\":5}";
-    private static final int FIVE = 5;
+    private static final String EXPECTED_USER_JSON = "{\"result\":55}";
+    private static final Integer TEN = 10;
 
     @Autowired
     MockMvc mockMvc;
 
     @Test
-    @Disabled  //Temporally till we finish usecase
     void should_calculate() throws Exception {
         mockMvc.perform(
                 MockMvcRequestBuilders
-                        .get("/v1/fibonacci/calculate/{number}", FIVE)
+                        .get("/v1/fibonacci/calculate/{number}", TEN)
                         .accept(APPLICATION_JSON))
-                .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().string(EXPECTED_USER_JSON))
         ;
