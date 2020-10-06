@@ -13,6 +13,10 @@ Or you can execute too
 mvn clean install
 java -jar target/fibonacci-0.0.1-SNAPSHOT.jar
 ```
+To execute the test you can execute, this will execute integration, acceptance and unit test
+```
+mvn test / mvn verify
+```
 The microservice started will expose an end-point
 ```
 http://localhost:8080/v1/fibonacci/calculate/{number}
