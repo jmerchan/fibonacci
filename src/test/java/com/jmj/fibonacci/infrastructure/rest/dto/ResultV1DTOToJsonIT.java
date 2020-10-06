@@ -13,7 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @ExtendWith(MockitoExtension.class)
 class ResultV1DTOToJsonIT {
 
-    private static final int FIVE = 5;
+    private static final Long FIVE = 5L;
 
     @Spy
     private ObjectMapper objectMapper;

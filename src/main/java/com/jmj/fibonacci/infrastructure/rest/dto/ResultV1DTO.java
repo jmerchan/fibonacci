@@ -12,10 +12,10 @@ import lombok.ToString;
 public class ResultV1DTO {
 
     @JsonProperty("result")
-    private Integer result;
+    private Long result;
 
     @JsonCreator
-    public ResultV1DTO(@JsonProperty("result") Integer result) {
+    public ResultV1DTO(@JsonProperty("result") Long result) {
         this.result = result;
     }
 }
