@@ -1,0 +1,129 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: FibonacciV1Controller</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.jmj.fibonacci.infrastructure.rest</a> ]
+</div>
+
+<h1>Coverage Summary for Class: FibonacciV1Controller (com.jmj.fibonacci.infrastructure.rest)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">FibonacciV1Controller</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/ 3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (9/ 9)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.jmj.fibonacci.infrastructure.rest;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.jmj.fibonacci.domain.NumberToCalculate;
+<i>4</i>&nbsp;import com.jmj.fibonacci.exception.ValueIncorrectException;
+<i>5</i>&nbsp;import com.jmj.fibonacci.infrastructure.rest.dto.ResultV1DTO;
+<i>6</i>&nbsp;import com.jmj.fibonacci.infrastructure.rest.mapper.LongToResultV1DTOMapper;
+<i>7</i>&nbsp;import com.jmj.fibonacci.usecase.CalculateFibonacci;
+<i>8</i>&nbsp;import org.apache.commons.lang3.math.NumberUtils;
+<i>9</i>&nbsp;import org.springframework.http.MediaType;
+<i>10</i>&nbsp;import org.springframework.web.bind.annotation.GetMapping;
+<i>11</i>&nbsp;import org.springframework.web.bind.annotation.PathVariable;
+<i>12</i>&nbsp;import org.springframework.web.bind.annotation.RequestMapping;
+<i>13</i>&nbsp;import org.springframework.web.bind.annotation.RestController;
+<i>14</i>&nbsp;
+<i>15</i>&nbsp;@RestController
+<i>16</i>&nbsp;@RequestMapping(value = &quot;/v1/fibonacci&quot;, produces = MediaType.APPLICATION_JSON_VALUE)
+<i>17</i>&nbsp;public class FibonacciV1Controller {
+<i>18</i>&nbsp;
+<i>19</i>&nbsp;    private CalculateFibonacci calculateFibonacci;
+<i>20</i>&nbsp;    private LongToResultV1DTOMapper longToResultV1DTOMapper;
+<i>21</i>&nbsp;
+<i>22</i>&nbsp;    public FibonacciV1Controller(CalculateFibonacci calculateFibonacci,
+<b class="fc"><i>23</i>&nbsp;                                 LongToResultV1DTOMapper longToResultV1DTOMapper) {</b>
+<b class="fc"><i>24</i>&nbsp;        this.calculateFibonacci = calculateFibonacci;</b>
+<b class="fc"><i>25</i>&nbsp;        this.longToResultV1DTOMapper = longToResultV1DTOMapper;</b>
+<b class="fc"><i>26</i>&nbsp;    }</b>
+<i>27</i>&nbsp;
+<i>28</i>&nbsp;    @GetMapping(&quot;/calculate/{value}&quot;)
+<i>29</i>&nbsp;    public ResultV1DTO calculate(
+<i>30</i>&nbsp;            @PathVariable(value = &quot;value&quot;) String numberParameter
+<i>31</i>&nbsp;    ) {
+<b class="fc"><i>32</i>&nbsp;        return longToResultV1DTOMapper.map(</b>
+<b class="fc"><i>33</i>&nbsp;                calculateFibonacci.execute(new NumberToCalculate(getNumber(numberParameter)))</b>
+<i>34</i>&nbsp;        );
+<i>35</i>&nbsp;
+<i>36</i>&nbsp;    }
+<i>37</i>&nbsp;
+<i>38</i>&nbsp;    private Integer getNumber(String numberParameter) {
+<b class="fc"><i>39</i>&nbsp;        if (NumberUtils.isCreatable(numberParameter)) {</b>
+<b class="fc"><i>40</i>&nbsp;            return Integer.valueOf(numberParameter);</b>
+<i>41</i>&nbsp;        } else {
+<b class="fc"><i>42</i>&nbsp;            throw new ValueIncorrectException(&quot;The value must be number&quot;);</b>
+<i>43</i>&nbsp;        }
+<i>44</i>&nbsp;    }
+<i>45</i>&nbsp;
+<i>46</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-10-07 20:29</div>
+</div>
+</body>
+</html>
