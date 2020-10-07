@@ -1,9 +1,11 @@
 package com.jmj.fibonacci.infrastructure.rest;
 
 import com.jmj.fibonacci.domain.NumberToCalculate;
+import com.jmj.fibonacci.exception.ValueIncorrectException;
 import com.jmj.fibonacci.infrastructure.rest.dto.ResultV1DTO;
 import com.jmj.fibonacci.infrastructure.rest.mapper.LongToResultV1DTOMapper;
 import com.jmj.fibonacci.usecase.CalculateFibonacci;
+import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,11 +27,20 @@ public class FibonacciV1Controller {
 
     @GetMapping("/calculate/{value}")
     public ResultV1DTO calculate(
-            @PathVariable(value = "value") int number
+            @PathVariable(value = "value") String numberParameter
     ) {
         return longToResultV1DTOMapper.map(
-                calculateFibonacci.execute(new NumberToCalculate(number))
+                calculateFibonacci.execute(new NumberToCalculate(getNumber(numberParameter)))
         );
+
+    }
+
+    private Integer getNumber(String numberParameter) {
+        if (NumberUtils.isCreatable(numberParameter)) {
+            return Integer.valueOf(numberParameter);
+        } else {
+            throw new ValueIncorrectException("The value must be number");
+        }
     }
 
 }

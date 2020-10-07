@@ -10,6 +10,8 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
+import javax.inject.Inject;
+
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -22,7 +24,7 @@ class GetFibonacciCalculateNumberIT {
     private static final String EXPECTED_USER_JSON = "{\"result\":55}";
     private static final Integer TEN = 10;
 
-    @Autowired
+    @Inject
     MockMvc mockMvc;
 
     @Test

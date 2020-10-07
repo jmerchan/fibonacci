@@ -2,6 +2,22 @@
 
 ## Getting started
 
+### Dockerize the microservice
+With this method we don't need anymore the Dockerfile.
+First of all we must create the image with the following command,
+this will create a small image, named 'fibonacci', with the latest patches.
+```
+mvn spring-boot:build-image
+```
+And we can run the image with the command (remove -it to execute in background)
+```
+docker run -it -p8080:8080 fibonacci:0.0.1-SNAPSHOT (The TAG, 0.0.1-SNAPSHOT, depends from the command before)
+```
+We can push the image to Docker repository executing (no mandatory)
+```
+docker push fibonacci:0.0.1-SNAPSHOT (The TAG, 0.0.1-SNAPSHOT, depends from the command before)
+```
+
 ### Starting the microservice
 
 This is a spring boot with maven to start type in root package:
