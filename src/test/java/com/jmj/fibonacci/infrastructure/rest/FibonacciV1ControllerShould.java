@@ -1,11 +1,9 @@
 package com.jmj.fibonacci.infrastructure.rest;
 
 import com.jmj.fibonacci.domain.NumberToCalculate;
-import com.jmj.fibonacci.exception.ValueIncorrectException;
 import com.jmj.fibonacci.infrastructure.rest.dto.ResultV1DTO;
 import com.jmj.fibonacci.infrastructure.rest.mapper.LongToResultV1DTOMapper;
 import com.jmj.fibonacci.usecase.CalculateFibonacci;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -38,21 +36,10 @@ class FibonacciV1ControllerShould {
         given(calculateFibonacci.execute(numberToCalculate)).willReturn(55L);
         given(longToResultV1DTOMapper.map(55L)).willReturn(new ResultV1DTO(55L));
 
-        ResultV1DTO calculate = fibonacciV1Controller.calculate("10");
+        ResultV1DTO calculate = fibonacciV1Controller.calculate(10);
 
         assertThat(calculate)
                 .isEqualTo(expectedResult);
 
-    }
-
-    @Test
-    void fail_when_no_number_is_given() {
-
-        Throwable throwable = Assertions.catchThrowable(() -> fibonacciV1Controller.calculate("zztop"));
-
-        assertThat(throwable)
-                .isNotNull()
-                .isInstanceOf(ValueIncorrectException.class)
-                .hasMessage("The value must be number");
     }
 }

@@ -45,3 +45,11 @@ The result should be
 ```
 {"result":55}
 ```
+
+### Documentation (Swagger)
+Swagger is implemented in this project, then to see the documentation 
+you can use these two URLs, once started
+```
+http://localhost:8080/swagger-ui.html
+http://localhost:8080/v2/api-docs
+```
